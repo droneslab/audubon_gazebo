@@ -4,6 +4,7 @@
 
   <!-- global variables -->
   <arg name='world_name' default='interlagos_track' />
+  <arg name='kbd_control' default='false' />
 
   <!-- global map server -->
   <!--
@@ -20,6 +21,7 @@
     <arg name='paint' value='Yellow' />
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
+    <arg name='keyboard_control' value='$(arg kbd_control)'/>
   </include>
 
   <!-- spawn car_2 -->
