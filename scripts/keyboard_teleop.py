@@ -29,7 +29,7 @@ def vels(speed, turn):
 
 if __name__== '__main__':
   settings    = termios.tcgetattr(sys.stdin)
-  command_pub = rospy.Publisher('/{}/teleop/command'.format(str(sys.argv[1])), AckermannDrive, queue_size = 1)
+  command_pub = rospy.Publisher('/{}/command'.format(str(sys.argv[1])), AckermannDrive, queue_size = 1)
   rospy.init_node('keyboard_teleop', anonymous = True)
 
   speed  = 0.0
