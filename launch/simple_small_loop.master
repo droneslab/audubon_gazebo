@@ -3,7 +3,7 @@
 <launch>
 
   <!-- global variables -->
-  <arg name='world_name' default='interlagos_track' />
+  <arg name='world_name' default='simple_small_loop' />
   <arg name='kbd_control' default='false' />
 
   <!-- global map server -->

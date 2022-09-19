@@ -24,7 +24,7 @@ y_offset = float(sys.argv[3])
 # subscriber topics
 
 gazebo_odom_topic = '/{}/ground_truth'.format(car_name)
-command_topic     = '/{}/multiplexer/command'.format(car_name)
+command_topic     = '/{}/command'.format(car_name)
 
 # publisher topics
 

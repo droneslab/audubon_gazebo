@@ -6,11 +6,16 @@
   <xacro:arg name="robot_name" default="car_1" />
   <xacro:arg name="robot_skin" default="Blue" />
 
+  <!-- Wheel properties: Velocity in rad/s, damping in N∙m∙s/rad and friction in N∙m-->
+  <xacro:arg name="wheel_velocity" default="100" />
+  <xacro:arg name="wheel_damping" default="0" />
+  <xacro:arg name="wheel_friction" default="0" />
+
   <!-- inertial parameter macros -->
 
   <xacro:macro name="chassis_inertial_params">
     <origin xyz="0.1477 0 0" rpy="0 0 0" />
-    <mass value="4.0" />
+    <mass value="10.0" />
     <inertia ixx="0.010609" ixy="0"          ixz="0"
                             iyy="0.050409"   iyz="0"
                                              izz="0.05865" />
@@ -192,7 +197,8 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_left_rear_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="100" />
+    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
   <xacro:wheel_transmission name="$(arg robot_name)_left_rear_wheel" />
@@ -217,7 +223,8 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_right_rear_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="100" />
+    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
   <xacro:wheel_transmission name="$(arg robot_name)_right_rear_wheel" />
@@ -286,7 +293,8 @@
     <parent link="$(arg robot_name)_left_steering_hinge" />
     <child link="$(arg robot_name)_left_front_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="100" />
+    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
   <xacro:wheel_transmission name="$(arg robot_name)_left_front_wheel" />
@@ -311,7 +319,8 @@
     <parent link="$(arg robot_name)_right_steering_hinge" />
     <child link="$(arg robot_name)_right_front_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="100"/>
+    <limit effort="10" velocity="$(arg wheel_velocity)"/>
+    <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
   <xacro:wheel_transmission name="$(arg robot_name)_right_front_wheel" />
