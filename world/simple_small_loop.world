@@ -144,6 +144,9 @@
             </contact>
             <bounce/>
             <friction>
+              <ode>
+                <mu>2</mu>
+              </ode>
               <torsional>
                 <ode/>
               </torsional>
@@ -193,7 +196,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='interlagos_track'>
+      <model name='simple_small_loop'>
         <pose frame=''>-206.696 193.336 0 0 0 -1.57079</pose>
         <scale>1 1 1</scale>
         <link name='body'>
