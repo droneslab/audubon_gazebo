@@ -74,9 +74,9 @@ if __name__ == '__main__':
 		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/scripts/IMS_waypoints.txt")
 		flatControl(data)
 		exp_data = robot_data_save[2:len(robot_data_save[:,0]),:] 
-		with open("robot_save.txt","w") as w:
-			w.write(str(robot_data_save))
-			w.close()
+		# with open("robot_save.txt","w") as w:
+		# 	w.write(str(robot_data_save))
+		# 	w.close()
 
 		x_exp =exp_data[:,0]
 		y_exp =exp_data[:,1]
