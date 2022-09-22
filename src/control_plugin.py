@@ -15,6 +15,10 @@ from geometry_msgs.msg import Transform
 from geometry_msgs.msg import TransformStamped
 from nav_msgs.msg import Odometry
 
+# vehicle params
+wheel_radius = 0.05
+wheelbase = 0.324
+
 # vehicle name
 
 car_name = str(sys.argv[1])
@@ -35,8 +39,8 @@ footprint_topic = '/{}/base/footprint'.format(car_name)
 
 LRW_topic   = '/{}/left_rear_wheel_velocity_controller/command'.format(car_name)
 RRW_topic   = '/{}/right_rear_wheel_velocity_controller/command'.format(car_name)
-LFW_topic   = '/{}/left_front_wheel_velocity_controller/command'.format(car_name)
-RFW_topic   = '/{}/right_front_wheel_velocity_controller/command'.format(car_name)
+# LFW_topic   = '/{}/left_front_wheel_velocity_controller/command'.format(car_name)
+# RFW_topic   = '/{}/right_front_wheel_velocity_controller/command'.format(car_name)
 LSH_topic   = '/{}/left_steering_hinge_position_controller/command'.format(car_name)
 RSH_topic   = '/{}/right_steering_hinge_position_controller/command'.format(car_name)
 
@@ -48,15 +52,15 @@ base_frame = '{}_base_link'.format(car_name)
 # information publishers
 
 footprint_pub = rospy.Publisher(footprint_topic, PolygonStamped, queue_size = 1)
-odom_pub      = rospy.Publisher(odom_pub_topic, Odometry, queue_size = 1)
+odom_pub      = rospy.Publisher(odom_pub_topic, Odometry, queue_size = 10)
 tf_pub        = tf2_ros.TransformBroadcaster()
 
 # control publishers
 
 pub_vel_LRW = rospy.Publisher(LRW_topic, Float64, queue_size = 1)
 pub_vel_RRW = rospy.Publisher(RRW_topic, Float64, queue_size = 1)
-pub_vel_LFW = rospy.Publisher(LFW_topic, Float64, queue_size = 1)
-pub_vel_RFW = rospy.Publisher(RFW_topic, Float64, queue_size = 1)
+# pub_vel_LFW = rospy.Publisher(LFW_topic, Float64, queue_size = 1)
+# pub_vel_RFW = rospy.Publisher(RFW_topic, Float64, queue_size = 1)
 pub_pos_LSH = rospy.Publisher(LSH_topic, Float64, queue_size = 1)
 pub_pos_RSH = rospy.Publisher(RSH_topic, Float64, queue_size = 1)
 
@@ -123,11 +127,11 @@ def odom_callback(data):
 
 global previous_speed
 
-previous_speed   = 0.0
-min_speed        = 0.0
+# previous_speed   = 0.0
+# min_speed        = 0.0
 max_speed        = 80.0 # 100.0
-speed_delta      = 5.0  # 1.25
-previous_speed   = 0.0
+# speed_delta      = 5.0  # 1.25
+# previous_speed   = 0.0
 
 # command callback
 
@@ -138,8 +142,9 @@ def command_callback(data):
     steering_angle = Float64()
     speed          = Float64()
 
-    steering_angle.data = data.steering_angle * 0.65
-    speed.data          = data.speed * max_speed
+    steering_angle.data = data.steering_angle
+    # We Publish individual wheel velocities so we convert the linear velocity to angular velocity for the wheel
+    speed.data          = data.speed / wheel_radius 
 
     '''
     if speed.data >= previous_speed + speed_delta:
@@ -161,8 +166,8 @@ def command_callback(data):
 
     pub_vel_LRW.publish(speed)
     pub_vel_RRW.publish(speed)
-    pub_vel_LFW.publish(speed)
-    pub_vel_RFW.publish(speed)
+    # pub_vel_LFW.publish(speed)
+    # pub_vel_RFW.publish(speed)
 
     pub_pos_LSH.publish(steering_angle)
     pub_pos_RSH.publish(steering_angle)
