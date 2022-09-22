@@ -145,7 +145,8 @@
             <bounce/>
             <friction>
               <ode>
-                <mu>2</mu>
+                <mu>100</mu>
+                <mu2>50</mu2>
               </ode>
               <torsional>
                 <ode/>
