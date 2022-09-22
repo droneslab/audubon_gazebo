@@ -97,6 +97,10 @@
             </contact>
             <bounce/>
             <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
               <torsional>
                 <ode/>
               </torsional>
@@ -126,48 +130,6 @@
       </link>
       <pose frame=''>-0.719505 0.551979 0 0 -0 0</pose>
     </model>
-    <model name='simple_small_loop'>
-      <pose frame=''>0 0 0 0 -0 0</pose>
-      <static>1</static>
-      <link name='body'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model://simple_small_loop/simple_small_loop.stl</uri>
-              <scale>1.0 1.0 1.0</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <ode>
-                <mu>100</mu>
-                <mu2>50</mu2>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://simple_small_loop/simple_small_loop.stl</uri>
-              <scale>0.4 0.4 0.0375</scale>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
     <audio>
       <device>default</device>
     </audio>
@@ -192,16 +154,6 @@
         <scale>1 1 1</scale>
         <link name='link'>
           <pose frame=''>0 0 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='simple_small_loop'>
-        <pose frame=''>-206.696 193.336 0 0 0 -1.57079</pose>
-        <scale>1 1 1</scale>
-        <link name='body'>
-          <pose frame=''>-206.696 193.336 0 0 0 -1.57079</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
