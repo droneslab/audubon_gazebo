@@ -10,6 +10,8 @@
   <xacro:arg name="wheel_velocity" default="100" />
   <xacro:arg name="wheel_damping" default="0" />
   <xacro:arg name="wheel_friction" default="0" />
+  <xacro:arg name="wheel_effort" default="5" />
+  <xacro:arg name="friction" default="1" />
 
   <!-- inertial parameter macros -->
 
@@ -197,7 +199,7 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_left_rear_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <limit effort="$(arg wheel_effort)" velocity="$(arg wheel_velocity)" />
     <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
@@ -223,7 +225,7 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_right_rear_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <limit effort="$(arg wheel_effort)" velocity="$(arg wheel_velocity)" />
     <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
@@ -246,7 +248,7 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_left_steering_hinge" />
     <axis xyz="-1 0 0" />
-    <limit lower="-1.0" upper="1.0" effort="10" velocity="100" />
+    <limit lower="-1.0" upper="1.0" effort="0.88" velocity="100" />
   </joint>
 
   <xacro:steering_hinge_transmission name="$(arg robot_name)_left_steering_hinge" />
@@ -293,7 +295,7 @@
     <parent link="$(arg robot_name)_left_steering_hinge" />
     <child link="$(arg robot_name)_left_front_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="$(arg wheel_velocity)" />
+    <limit effort="$(arg wheel_effort)" velocity="$(arg wheel_velocity)" />
     <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
@@ -319,7 +321,7 @@
     <parent link="$(arg robot_name)_right_steering_hinge" />
     <child link="$(arg robot_name)_right_front_wheel" />
     <axis xyz="0 0 -1" />
-    <limit effort="10" velocity="$(arg wheel_velocity)"/>
+    <limit effort="$(arg wheel_effort)" velocity="$(arg wheel_velocity)"/>
     <dynamics damping="$(arg wheel_damping)" friction="$(arg wheel_friction)"/>
   </joint>
 
@@ -425,8 +427,8 @@
   </gazebo>
 
   <gazebo reference="$(arg robot_name)_left_rear_wheel">
-    <mu1 value="1.0"/>
-    <mu2 value="1.0"/>
+    <mu1 value="$(arg friction)"/>
+    <mu2 value="$(arg friction)"/>
     <kp  value="10000000.0" />
     <kd  value="1.0" />
     <fdir1 value="1 0 0"/>
@@ -434,8 +436,8 @@
   </gazebo>
 
   <gazebo reference="$(arg robot_name)_right_rear_wheel">
-    <mu1 value="1.0"/>
-    <mu2 value="1.0"/>
+    <mu1 value="$(arg friction)"/>
+    <mu2 value="$(arg friction)"/>
     <kp  value="10000000.0" />
     <kd  value="1.0" />
     <fdir1 value="1 0 0"/>
@@ -443,8 +445,8 @@
   </gazebo>
 
   <gazebo reference="$(arg robot_name)_left_front_wheel">
-    <mu1 value="1.0"/>
-    <mu2 value="1.0"/>
+    <mu1 value="$(arg friction)"/>
+    <mu2 value="$(arg friction)"/>
     <kp  value="10000000.0" />
     <kd  value="1.0" />
     <fdir1 value="0 0 1"/>
@@ -452,8 +454,8 @@
   </gazebo>
 
   <gazebo reference="$(arg robot_name)_right_front_wheel">
-    <mu1 value="1.0"/>
-    <mu2 value="1.0"/>
+    <mu1 value="$(arg friction)"/>
+    <mu2 value="$(arg friction)"/>
     <kp  value="10000000.0" />
     <kd  value="1.0" />
     <fdir1 value="0 0 1"/>
