@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 import rospy
 import math
 import sys
@@ -14,10 +15,12 @@ from geometry_msgs.msg import PolygonStamped
 from geometry_msgs.msg import Transform
 from geometry_msgs.msg import TransformStamped
 from nav_msgs.msg import Odometry
+from math import tan
 
 # vehicle params
-wheel_radius = 0.05
+wheel_radius = 0.052
 wheelbase = 0.324
+track = 0.240
 
 # vehicle name
 
@@ -137,12 +140,24 @@ max_speed        = 80.0 # 100.0
 
 def command_callback(data):
 
-    global previous_speed
-
-    steering_angle = Float64()
+    LW_steering_angle = Float64()
+    RW_steering_angle = Float64()
     speed          = Float64()
 
-    steering_angle.data = data.steering_angle
+    if data.steering_angle > 0:
+        ICR = wheelbase/tan(data.steering_angle)
+        LW_steering_angle = wheelbase/(ICR-(track)/2)
+        RW_steering_angle = wheelbase/(ICR+(track)/2)
+
+    if data.steering_angle < 0:
+        ICR = wheelbase/tan(data.steering_angle)
+        LW_steering_angle = wheelbase/(ICR+(track)/2)
+        RW_steering_angle = wheelbase/(ICR-(track)/2)
+
+    if data.steering_angle == 0:
+        LW_steering_angle = 0
+        RW_steering_angle = 0
+
     # We Publish individual wheel velocities so we convert the linear velocity to angular velocity for the wheel
     speed.data          = data.speed / wheel_radius 
 
@@ -169,8 +184,8 @@ def command_callback(data):
     # pub_vel_LFW.publish(speed)
     # pub_vel_RFW.publish(speed)
 
-    pub_pos_LSH.publish(steering_angle)
-    pub_pos_RSH.publish(steering_angle)
+    pub_pos_LSH.publish(LW_steering_angle)
+    pub_pos_RSH.publish(RW_steering_angle)
 
 if __name__ == '__main__':
 
