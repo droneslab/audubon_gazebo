@@ -11,6 +11,7 @@
   <xacro:arg name="wheel_damping" default="0" />
   <xacro:arg name="wheel_friction" default="0" />
   <xacro:arg name="wheel_effort" default="5" />
+  <xacro:arg name="hinge_effort" default="0.88" />
   <xacro:arg name="friction" default="1" />
 
   <!-- inertial parameter macros -->
@@ -248,7 +249,7 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_left_steering_hinge" />
     <axis xyz="-1 0 0" />
-    <limit lower="-1.0" upper="1.0" effort="0.88" velocity="100" />
+    <limit lower="-1.0" upper="1.0" effort="$(arg hinge_effort)" velocity="100" />
   </joint>
 
   <xacro:steering_hinge_transmission name="$(arg robot_name)_left_steering_hinge" />
@@ -270,7 +271,7 @@
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_right_steering_hinge" />
     <axis xyz="-1 0 0" />
-    <limit lower="-1.0" upper="1.0" effort="10" velocity="100" />
+    <limit lower="-1.0" upper="1.0" effort="$(arg hinge_effort)" velocity="100" />
   </joint>
 
   <xacro:steering_hinge_transmission name="$(arg robot_name)_right_steering_hinge" />
