@@ -15,7 +15,7 @@ from geometry_msgs.msg import PolygonStamped
 from geometry_msgs.msg import Transform
 from geometry_msgs.msg import TransformStamped
 from nav_msgs.msg import Odometry
-from math import tan
+from math import atan, tan
 
 # vehicle params
 wheel_radius = 0.052
@@ -145,14 +145,14 @@ def command_callback(data):
     speed          = Float64()
 
     if data.steering_angle > 0:
-        ICR = wheelbase/tan(data.steering_angle)
-        LW_steering_angle = wheelbase/(ICR-(track)/2)
-        RW_steering_angle = wheelbase/(ICR+(track)/2)
+        ICR = abs(wheelbase/tan(data.steering_angle))
+        LW_steering_angle = atan(wheelbase/(ICR-(track/2)))
+        RW_steering_angle = atan(wheelbase/(ICR+(track/2)))
 
     if data.steering_angle < 0:
-        ICR = wheelbase/tan(data.steering_angle)
-        LW_steering_angle = wheelbase/(ICR+(track)/2)
-        RW_steering_angle = wheelbase/(ICR-(track)/2)
+        ICR = abs(wheelbase/tan(data.steering_angle))
+        LW_steering_angle = -atan(wheelbase/(ICR+(track/2)))
+        RW_steering_angle = -atan(wheelbase/(ICR-(track/2)))
 
     if data.steering_angle == 0:
         LW_steering_angle = 0
