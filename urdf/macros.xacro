@@ -522,14 +522,14 @@
   </xacro:unless>
 
   <!-- camera object -->
-  <xacro:unless value="$(optenv DISABLE_GAZEBO_CAMERA false)">
+  <!-- <xacro:unless value="$(optenv DISABLE_GAZEBO_CAMERA false)">
     <gazebo reference="$(arg robot_name)_camera_link">
       <sensor type="camera" name="$(arg robot_name)_left_sensor">
-        <update_rate>30.0</update_rate>
-        <!-- math.atan(320 / 687.8065795898438) * 2 -->
-        <camera name="front_camera">
-          <!-- horizontal_fov>0.8709216071359963</horizontal_fov -->
-          <horizontal_fov>1.74</horizontal_fov>
+        <update_rate>30.0</update_rate> -->
+        <!-- math.atan(320 / 687.8065795898438) * 2 COMMENT -->
+        <!-- <camera name="front_camera"> -->
+          <!-- horizontal_fov>0.8709216071359963</horizontal_fov COMMENT-->
+          <!-- <horizontal_fov>1.74</horizontal_fov>
           <image>
             <width>1920</width>
             <height>1080</height>
@@ -551,8 +551,9 @@
           <cameraName>/$(arg robot_name)/camera</cameraName>
           <imageTopicName>image</imageTopicName>
           <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-          <frameName>$(arg robot_name)_camera_link</frameName>
-          <hackBaseline>0</hackBaseline><!-- set this to 0.12 for the second camera -->
+          <frameName>$(arg robot_name)_camera_link</frameName> -->
+          <!-- set this to 0.12 for the second camera  COMMENT -->
+          <!-- <hackBaseline>0</hackBaseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>
           <distortionK3>0.0</distortionK3>
@@ -561,7 +562,7 @@
         </plugin>
       </sensor>
     </gazebo>
-  </xacro:unless>
+  </xacro:unless> -->
 
   <material name="black">
     <color rgba="0.0 0.0 0.0 1.0"/>
