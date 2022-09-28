@@ -15,8 +15,8 @@
   <!-- spawn car_1 and launch Gazebo -->
   <include file='$(find f1tenth-sim)/config/one_car.launch.xml'>
     <arg name='car_name' value='car_1' />
-    <arg name='x_pos' value='14.0' />
-    <arg name='y_pos' value='-23.5' />
+    <arg name='x_pos' value='0' />
+    <arg name='y_pos' value='0' />
     <arg name='paint' value='Yellow' />
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
