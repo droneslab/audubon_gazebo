@@ -83,7 +83,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='silverstone_track'>
-      <pose frame=''>20 331 0 0 0 -2.3</pose>
+      <pose frame=''>40 -36 0 0 0 -0.95</pose>
       <static>1</static>
       <link name='body'>
         <collision name='collision'>
