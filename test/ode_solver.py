@@ -16,7 +16,7 @@ plt.style.use('seaborn-poster')
 
 phi = 0.35
 speed = 3
-wheel_base = 0.324
+wheel_base = 0.175
 wheel_radius = 0.052
 
 

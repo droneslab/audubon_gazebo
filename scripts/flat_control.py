@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 import math
 import time
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 		vel_topic = "/car_1/command"
 		vel_pub = rospy.Publisher(vel_topic,AckermannDrive,queue_size = 10)
 
-		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/Silverstone_size1_vmax1.txt")
+		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/icra_size1_vmax1.txt")
 		flatControl(data)
 		exp_data = robot_data_save[2:len(robot_data_save[:,0]),:] 
 		# with open("robot_save.txt","w") as w:
