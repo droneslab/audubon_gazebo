@@ -41,6 +41,7 @@ def flatControl(input_table):
 	odom_topic = "/car_1/base/odom"
 	odom_sub = rospy.Subscriber(odom_topic,Odometry,odom_callback)
 
+	start_time = rospy.get_time()
 	while not rospy.is_shutdown():
 		current_time = count * 1/(float(loop_rate))
 		
@@ -64,6 +65,11 @@ def flatControl(input_table):
 			break
 		count =count+1
 		r.sleep()
+
+	end_time = rospy.get_time()
+
+	rospy.loginfo(end_time - start_time)
+
 if __name__ == '__main__':
 	try :
 		print('Kinematic Diff Flat Open Loop')
@@ -71,7 +77,7 @@ if __name__ == '__main__':
 		vel_topic = "/car_1/command"
 		vel_pub = rospy.Publisher(vel_topic,AckermannDrive,queue_size = 10)
 
-		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/Silverstone_size0.25_vmax1.txt")
+		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/Silverstone_size1_vmax1.txt")
 		flatControl(data)
 		exp_data = robot_data_save[2:len(robot_data_save[:,0]),:] 
 		# with open("robot_save.txt","w") as w:
