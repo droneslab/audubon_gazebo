@@ -15,8 +15,8 @@
   <!-- spawn car_1 and launch Gazebo -->
   <include file='$(find f1tenth-sim)/config/one_car.launch.xml'>
     <arg name='car_name' value='car_1' />
-    <arg name='x_pos' value='-25.25' />
-    <arg name='y_pos' value='-42.25' />
+    <arg name='x_pos' value='0' />
+    <arg name='y_pos' value='0' />
     <arg name='paint' value='Yellow' />
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
@@ -26,8 +26,8 @@
   <!--
   <include file='$(find f1tenth-sim)/config/one_car.launch.xml'>
     <arg name='car_name' value='car_2' />
-    <arg name='x_pos' value='-25.25' />
-    <arg name='y_pos' value='-41.25' />
+    <arg name='x_pos' value='12.5' />
+    <arg name='y_pos' value='-25.0' />
     <arg name='paint' value='Green' />
   </include> -->
 
@@ -35,8 +35,8 @@
   <!--
   <include file='$(find f1tenth-sim)/config/one_car.launch.xml'>
     <arg name='car_name' value='car_3' />
-    <arg name='x_pos' value='-25.25' />
-    <arg name='y_pos' value='-40.25' />
+    <arg name='x_pos' value='11.0' />
+    <arg name='y_pos' value='-27.0' />
     <arg name='paint' value='Red' />
   </include> -->
 
