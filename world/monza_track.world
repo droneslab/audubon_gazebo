@@ -83,7 +83,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='monza_track'>
-      <pose frame=''>36.67 -30.78 0 0 0 -1.48</pose>
+      <pose frame=''>76.78 -43.87 0 0 0 -1.48</pose>
       <static>1</static>
       <link name='body'>
         <collision name='collision'>
