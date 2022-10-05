@@ -22,12 +22,12 @@ The simulator has been tested on a variety of hardware configurations, and while
 |      Memory      |           16 GiB DDR4          |
 |        GPU       |         NVIDIA GTX-1660        |
 
-The simulator itself depends on libraries, packages and objects from ROS and Gazebo. The current version of the simulator uses ROS Melodic and Gazebo 9; along with certain other libraries and their python bindings. Before proceeding with the installation steps in this document, check if your local machine already has the full-desktop version of ROS Melodic installed. If not, follow the instructions provided in this [link](http://wiki.ros.org/melodic/Installation/Ubuntu). When you get to section 1.4 of the ROS installation tutorial, choose the first option: `ros-melodic-desktop-full`. Your local machine will now have the basic dependencies installed. The next steps of the installation tutorial are critical and must be followed in the shown sequence.
+The simulator itself depends on libraries, packages and objects from ROS and Gazebo. The current version of the simulator uses ROS Melodic and Gazebo 9; along with certain other libraries and their python bindings. Before proceeding with the installation steps in this document, check if your local machine already has the full-desktop version of ROS Melodic installed. If not, follow the instructions provided in this [link](http://wiki.ros.org/noetic/Installation/Ubuntu). When you get to section 1.4 of the ROS installation tutorial, choose the first option: `ros-noetic-desktop-full`. Your local machine will now have the basic dependencies installed. The next steps of the installation tutorial are critical and must be followed in the shown sequence.
 
 First, we begin by installing the ROS and Gazebo packages that are not installed by default using the above method. This includes SLAM packages, ROS navigation and the MIT GPU particle filter. Some of these packages have a Debian installation candidates and the others have to be downloaded as source codes and locally compiled. We install the Debian packages first; open a new terminal and enter the following command:
 
 ```console
-user@ros-computer: sudo apt-get install -y ros-melodic-navigation ros-melodic-teb-local-planner* ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-gazebo-ros-control ros-melodic-ackermann-msgs ros-melodic-serial qt4-default
+user@ros-computer: sudo apt-get install -y ros-noetic-navigation ros-noetic-teb-local-planner* ros-noetic-ros-control ros-noetic-ros-controllers ros-noetic-gazebo-ros-control ros-noetic-ackermann-msgs ros-noetic-serial 
 ```
 
 Once the above installation process is completed, the simulator source along with the particle filter and mapping package will have to be downloaded. To do this, we first need to create a ROS workspace. Open a new terminal and enter the following commands in the given sequence:
