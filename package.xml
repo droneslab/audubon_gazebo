@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>f1tenth-sim</name>
+  <name>audubon-gazebo</name>
   <version>0.2.0</version>
   <description>UVA F1/10 Autonomous Racecar Simulator</description>
 

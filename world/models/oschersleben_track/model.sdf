@@ -9,7 +9,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://f1tenth-sim/world/oschersleben_track/oschersleben_track.stl</uri>
+            <uri>model://audubon-gazebo/world/oschersleben_track/oschersleben_track.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -17,7 +17,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://f1tenth-sim/world/oschersleben_track/oschersleben_track.stl</uri>
+            <uri>model://audubon-gazebo/world/oschersleben_track/oschersleben_track.stl</uri>
           </mesh>
         </geometry>
       </visual>

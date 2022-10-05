@@ -32,7 +32,7 @@
 
     <!-- launch gazebo with track -->
     <include file='$(find gazebo_ros)/launch/empty_world.launch'>
-      <arg name='world_name' value='$(find f1tenth-sim)/world/$(arg world_name).world' />
+      <arg name='world_name' value='$(find audubon-gazebo)/world/$(arg world_name).world' />
       <arg name='gui' value='$(arg gui)' />
     </include>
   </group>
@@ -42,19 +42,19 @@
     <node name='joy_plugin' pkg='joy' type='joy_node'>
       <param name='autorepeat_rate' value='20.0' />
     </node>
-    <node name='remote_control' pkg='f1tenth-sim' type='remote_control.py' args='$(arg car_name)' />
+    <node name='remote_control' pkg='audubon-gazebo' type='remote_control.py' args='$(arg car_name)' />
   </group>
 
   <!-- check if keyboard control is required -->
   <group if='$(arg keyboard_control)'>
-    <node name='keyboard_plugin' pkg='f1tenth-sim' type='keyboard_teleop.py' args='$(arg car_name)' />
+    <node name='keyboard_plugin' pkg='audubon-gazebo' type='keyboard_teleop.py' args='$(arg car_name)' />
   </group>
 
   <!-- reset racecar to pit stop -->
-  <node name='$(arg car_name)_pit_stop_reset' pkg='f1tenth-sim' type='set_racecar_state.py' args='$(arg car_name)' />
+  <node name='$(arg car_name)_pit_stop_reset' pkg='audubon-gazebo' type='set_racecar_state.py' args='$(arg car_name)' />
 
   <!-- spawn car using the set global parameters -->
-  <include file='$(find f1tenth-sim)/config/vehicle_class.launch.xml'>
+  <include file='$(find audubon-gazebo)/config/vehicle_class.launch.xml'>
     <arg name='car_name' value='$(arg car_name)' />
     <arg name='x_pos' value='$(arg x_pos)' />
     <arg name='y_pos' value='$(arg y_pos)' />

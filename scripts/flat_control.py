@@ -49,7 +49,7 @@ def flatControl(input_table):
 		delta_cmd = np.interp(current_time,input_table[:,0],input_table[:,2])
 		vel.speed =  v_cmd
 		vel.steering_angle = delta_cmd
-		print (vel.steering_angle)
+		# print (vel.steering_angle)
 		vel_pub.publish(vel)
 		robot_data = [[robot_x,robot_y,robot_th,robot_v,robot_w]]
 		robot_data_save = np.append(robot_data_save,robot_data,axis=0)
@@ -61,7 +61,7 @@ def flatControl(input_table):
 			vel_pub.publish(vel)
 			robot_data = [[robot_x,robot_y,robot_th,robot_v,robot_w]]
 			robot_data_save = np.append(robot_data_save,robot_data,axis=0)
-			print('DONE')
+			# print('DONE')
 			break
 		count =count+1
 		r.sleep()
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 		vel_topic = "/car_1/command"
 		vel_pub = rospy.Publisher(vel_topic,AckermannDrive,queue_size = 10)
 
-		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/icra_size1_vmax1.txt")
+		data = np.loadtxt("/home/yashom/catkin_ws/src/audubon_gazebo/test/jfr_wp/IMS_size1_vmax5.txt")
 		flatControl(data)
 		exp_data = robot_data_save[2:len(robot_data_save[:,0]),:] 
 		# with open("robot_save.txt","w") as w:
