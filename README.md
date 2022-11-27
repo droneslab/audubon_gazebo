@@ -10,6 +10,34 @@ First, we begin by installing the ROS and Gazebo packages that are not installed
 sudo apt-get install -y ros-noetic-navigation ros-noetic-teb-local-planner* ros-noetic-ros-control ros-noetic-ros-controllers ros-noetic-gazebo-ros-control ros-noetic-ackermann-msgs ros-noetic-serial 
 ```
 
+Then, we build this catkin package and source the workspace. Once it is built, the models have to be placed in the appropriate directory for gazebo to find them. 
+Your home folder should have a ```.gazebo``` directory, you can check this with 
+```
+ls -lA | grep .gazebo   
+```
+if this command does not return anything then create one as follows
+```
+cd
+mkdir -p .gazebo/models
+```
+From the audubon_gazebo directory execute 
+```
+ cp -r world/models/. ~/.gazebo/models
+```
+This will move the models to the appropriate directory
+
+You can verify that using the ls command in the ~/.gazebo/models directory
+
+## Usage
+Once the package is built and the models are in the appropriate directory, (source the workspace once it is built) run the testing ground world using 
+```
+roslaunch audubon-gazebo testing_ground.launch 
+```
+This should launch an empty plane with the car. 
+To verify if everything else works use the other provides launch files 
+
+To verify that the car works, publish a ackerman message using rostopic pub to the topic /car1/command (populate only the steering angle and speed should be fine. The rest can be zero or unpopulated) 
+
 Based on the work of:
 ```
 @inproceedings{babu2020f1tenth,
