@@ -4,6 +4,8 @@ from sensor_msgs.msg import Joy
 import sys
 import math
 
+# max_speed and max_angle are values that make the calculations normalized
+# Checks for user inputted values, if none are provided, defaults to max speed: 10 m/s and max angle: 45 degrees
 if(len(sys.argv)<2):
     print("Setting default max_speed:10 \t max_angle:45 degrees")
     max_speed=10
@@ -12,15 +14,21 @@ else:
     max_speed = float(sys.argv[1])
     max_angle = float(sys.argv[2])
 
-# Actual value of the speed
+# Speed value given to AckermannDrive message
 global throttle_ms
 throttle_ms = 0
 
-# Actual value of the steering angle
+# Steering Angle value given to AckermannDrive message
 global steering_angle
 steering_angle = 0
 
 def callback(data):
+    '''
+        Callback function that subscribes to joy topic and gets sensor_msgs.msg.Joy messages\n
+        Input: Joy messages from joy \n
+        Computes: Desired speed and steering angles using the current inputs and the max speed and max angle \n
+        Sets: Global variables throttle_ms and steering_angle for AckermannDrive message speed and steering angle values
+    '''
     global throttle_ms,steering_angle,max_speed,max_angle
 
     # Values from joystick
@@ -42,6 +50,12 @@ def callback(data):
 
 
 def talker():
+    '''
+    Publisher Subscriber funtion \n
+    Publishes AckermannDriver messages to topic car_1/command \n
+    Subscribes to Joy messages from joy node \n
+
+    '''
     global throttle_ms,steering_angle
     ack_pub = rospy.Publisher('/car_1/command', AckermannDrive, queue_size=10)
     rospy.init_node('joy_ack_publisher', anonymous=True)
