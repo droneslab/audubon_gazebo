@@ -9,9 +9,11 @@
   <arg name='z_pos' default='0.05' />
   <arg name='run_gazebo' default='false' />
   <arg name='paint' default='Yellow' />
-  <arg name='remote_control' default='true' />
   <arg name='keyboard_control' default='false' />
   <arg name='world_name' default='bahrain_track' />
+
+<!-- Set the default value to false if joy input is not needed -->
+  <arg name='remote_control' default='true' />
 
   <!-- run gazebo by default only once -->
   <group if='$(arg run_gazebo)'>
