@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import rospy
 from ackermann_msgs.msg import AckermannDrive
 from sensor_msgs.msg import Joy
@@ -44,9 +45,9 @@ def callback(data):
 
     # # Non Linear-ish
     if(abs(steering_input)<0.5):
-        steering_angle = 0.9*(steering_input)*max_angle*math.pi/180
+        steering_angle = 0.5*(steering_input)*max_angle*math.pi/180
     else:
-        steering_angle = steering_input*max_angle*math.pi/180
+        steering_angle = 0.5*steering_input*max_angle*math.pi/180
 
 
 def talker():

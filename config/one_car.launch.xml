@@ -9,7 +9,7 @@
   <arg name='z_pos' default='0.05' />
   <arg name='run_gazebo' default='false' />
   <arg name='paint' default='Yellow' />
-  <arg name='remote_control' default='false' />
+  <arg name='remote_control' default='true' />
   <arg name='keyboard_control' default='false' />
   <arg name='world_name' default='bahrain_track' />
 
@@ -37,12 +37,16 @@
     </include>
   </group>
 
+  <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower. Settings at follow_car.rviz -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_car.rviz"/> -->
+  
   <!-- check if remote control is required -->
   <group if='$(arg remote_control)'>
     <node name='joy_plugin' pkg='joy' type='joy_node'>
-      <param name='autorepeat_rate' value='20.0' />
+      <!-- <param name='autorepeat_rate' value='20.0' /> -->
     </node>
-    <node name='remote_control' pkg='audubon-gazebo' type='remote_control.py' args='$(arg car_name)' />
+    <!-- args are max_speed and max_angle. Max angle is actually halved in code so put 2x the desired max steering angle -->
+    <node name='remote_control' pkg='audubon-gazebo' type='joy_acker_publisher.py' args='6 40' />
   </group>
 
   <!-- check if keyboard control is required -->
