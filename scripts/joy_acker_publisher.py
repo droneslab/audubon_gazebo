@@ -34,11 +34,18 @@ def callback(data):
 
     # Values from joystick
     throttle_input = data.axes[5]
+    reverse_input = data.axes[2]
+    multiplier = data.axes[7]
     steering_input = data.axes[0]
+    # max_speed+=(1*multiplier)
 
     # XBOX RT starts at +1 and ends at -1 ie [1,-1]
-    throttle_ms = (max_speed/2)*(1-throttle_input)
     # throttle_ms = (max_speed/2)+(max_speed/2)*((-1)*throttle_input)
+    throttle_ms = (max_speed/2)*(1-throttle_input)
+    
+    # throttle_ms = (max_speed)*((reverse_input-throttle_input)/2)
+    # print(reverse_input,throttle_input,reverse_input-throttle_input,throttle_ms)
+    
 
     # XBOX LS is +1 at left and -1 at right
     # steering_angle = steering_input*max_angle*math.pi/180
