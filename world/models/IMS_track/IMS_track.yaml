@@ -1,11 +1,9 @@
 image: IMS_map.png
 
-# resolution: 0.06367
-# origin: [-38,39.35, -1.570796327]
-
 resolution: 0.06367
 origin: [-37.9,39.3, -1.570796327]
-
+# origin: [0,0, 0]
+# origin: [-30,39.2,-1.570796327]
 
 negate: 0
 occupied_thresh: 0.45
