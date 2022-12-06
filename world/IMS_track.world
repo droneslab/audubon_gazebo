@@ -87,14 +87,14 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='obj_IMS_track'>
+    <model name='IMS_track'>
       <pose>81 31 -0.5 0 -0 0</pose>
       <static>1</static>
       <link name='body'>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://obj_IMS_track/IMS_track.stl</uri>
+              <uri>model://IMS_track/IMS_track.stl</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -115,7 +115,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>model://obj_IMS_track/IMS_track.stl</uri>
+              <uri>model://IMS_track/IMS_track.stl</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -394,52 +394,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='car_1'>
-        <pose>-4.7e-05 -4e-06 -1e-06 0 2e-06 1e-05</pose>
-        <scale>1 1 1</scale>
-        <link name='car_1_base_link'>
-          <pose>-4.7e-05 -4e-06 -1e-06 0 2e-06 1e-05</pose>
-          <velocity>-1e-06 -0 7e-06 1e-06 -5e-06 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_left_front_wheel'>
-          <pose>0.324952 0.099999 0.049999 2.43613 1.57076 0.866744</pose>
-          <velocity>-1e-06 2e-06 7e-06 -4.6e-05 -1.5e-05 -1.7e-05</velocity>
-          <acceleration>-0 0 0 0 -0 0</acceleration>
-          <wrench>-0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_left_rear_wheel'>
-          <pose>-4.8e-05 0.099996 0.049999 1.57079 -0.000814 1e-05</pose>
-          <velocity>-1e-06 -0 7e-06 4e-06 -2.5e-05 0</velocity>
-          <acceleration>0 0 0 0 0.017852 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_left_steering_hinge'>
-          <pose>0.324952 0.099999 0.049999 1.81682 1.57076 1.81824</pose>
-          <velocity>-1e-06 2e-06 8e-06 -0.000128 -6e-06 -1.6e-05</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_right_front_wheel'>
-          <pose>0.324954 -0.100001 0.049999 1.55228 1.56955 -0.018698</pose>
-          <velocity>-1e-06 -3e-06 7e-06 5.9e-05 -2.6e-05 -8e-06</velocity>
-          <acceleration>0 -0 -0 0 -0 0</acceleration>
-          <wrench>0 -0 -0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_right_rear_wheel'>
-          <pose>-4.6e-05 -0.100004 0.049999 1.5708 -0.001066 1e-05</pose>
-          <velocity>-1e-06 -0 7e-06 2e-06 -2.5e-05 0</velocity>
-          <acceleration>0 -0 -0 0 0.017852 0</acceleration>
-          <wrench>0 -0 -0 0 -0 0</wrench>
-        </link>
-        <link name='car_1_right_steering_hinge'>
-          <pose>0.324954 -0.100001 0.049999 2.21131 1.57078 2.21113</pose>
-          <velocity>-1e-06 0 8e-06 -4.1e-05 -5e-06 -7e-06</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
+      
       <model name='fire_hydrant_clone'>
         <pose>-27.275 -22.8538 0.853755 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -1575,575 +1530,6 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='car_1'>
-      <link name='car_1_base_link'>
-        <inertial>
-          <pose>0.146972 -0 0.054895 0 -0 0</pose>
-          <mass>4.13003</mass>
-          <inertia>
-            <ixx>0.0138848</ixx>
-            <ixy>-1.35418e-06</ixy>
-            <ixz>0.00063981</ixz>
-            <iyy>0.053918</iyy>
-            <iyz>1.07706e-06</iyz>
-            <izz>0.0588902</izz>
-          </inertia>
-        </inertial>
-        <collision name='car_1_base_link_fixed_joint_lump__car_1_laser_collision'>
-          <pose>0.125 0 0.205 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <friction>
-              <ode/>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <collision name='car_1_base_link_fixed_joint_lump__car_1_link_collision_1'>
-          <pose>0.39 0 0.325 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.033 0.175 0.03</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='car_1_base_link_fixed_joint_lump__car_1_chassis_visual'>
-          <pose>0.46 -0.135 -0.13 1.57 0 3.14</pose>
-          <geometry>
-            <mesh>
-              <scale>0.00099 0.000938 0.000938</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/chassis.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Yellow</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <visual name='car_1_base_link_fixed_joint_lump__car_1_laser_visual_1'>
-          <pose>0.125 0 0.205 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/hokuyo.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Grey</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <visual name='car_1_base_link_fixed_joint_lump__car_1_link_visual_2'>
-          <pose>0.39 0 0.1 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.033 0.175 0.03</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name='car_1_hokuyo_sensor' type='ray'>
-          <visualize>0</visualize>
-          <update_rate>40</update_rate>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1081</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.35619</min_angle>
-                <max_angle>2.35619</max_angle>
-              </horizontal>
-              <vertical>
-                <samples>1</samples>
-                <min_angle>0</min_angle>
-                <max_angle>0</max_angle>
-              </vertical>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-            <noise>
-              <mean>0</mean>
-              <stddev>0.01</stddev>
-              <type>gaussian</type>
-            </noise>
-          </ray>
-          <plugin name='hokuyo_controller' filename='libgazebo_ros_laser.so'>
-            <topicName>/car_1/scan</topicName>
-            <frameName>car_1_laser</frameName>
-            <robotNamespace>/</robotNamespace>
-          </plugin>
-          <pose>0.125 0 0.205 0 -0 0</pose>
-        </sensor>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_left_rear_wheel_joint' type='revolute'>
-        <pose relative_to='car_1_base_link'>0 0.1 0.05 1.5708 -0 0</pose>
-        <parent>car_1_base_link</parent>
-        <child>car_1_left_rear_wheel</child>
-        <axis>
-          <xyz>0 0 -1</xyz>
-          <limit>
-            <effort>5</effort>
-            <velocity>300</velocity>
-            <lower>-1e+16</lower>
-            <upper>1e+16</upper>
-          </limit>
-          <dynamics>
-            <damping>0</damping>
-            <friction>0</friction>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_left_rear_wheel'>
-        <pose relative_to='car_1_left_rear_wheel_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 -0.0225 0 -0 0</pose>
-          <mass>0.34055</mass>
-          <inertia>
-            <ixx>0.00026046</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00026046</iyy>
-            <iyz>0</iyz>
-            <izz>0.00041226</izz>
-          </inertia>
-        </inertial>
-        <collision name='car_1_left_rear_wheel_collision'>
-          <pose>0 0 -0.0225 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <length>0.045</length>
-              <radius>0.05</radius>
-            </cylinder>
-          </geometry>
-          <surface>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-              </ode>
-            </contact>
-            <friction>
-              <ode>
-                <mu>1.7</mu>
-                <mu2>1.7</mu2>
-                <fdir1>1 0 0</fdir1>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='car_1_left_rear_wheel_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/left_wheel.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Black</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_left_steering_hinge_joint' type='revolute'>
-        <pose relative_to='car_1_base_link'>0.325 0.1 0.05 3.14159 1.57079 3.14159</pose>
-        <parent>car_1_base_link</parent>
-        <child>car_1_left_steering_hinge</child>
-        <axis>
-          <xyz>-1 0 0</xyz>
-          <limit>
-            <lower>-1</lower>
-            <upper>1</upper>
-            <effort>2</effort>
-            <velocity>100</velocity>
-          </limit>
-          <dynamics>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_left_steering_hinge'>
-        <pose relative_to='car_1_left_steering_hinge_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>4e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>4e-06</iyy>
-            <iyz>0</iyz>
-            <izz>4e-06</izz>
-          </inertia>
-        </inertial>
-        <visual name='car_1_left_steering_hinge_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/hinge.stl</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_left_front_wheel_joint' type='revolute'>
-        <pose relative_to='car_1_left_steering_hinge'>0 0 0 1.5708 -0 0</pose>
-        <parent>car_1_left_steering_hinge</parent>
-        <child>car_1_left_front_wheel</child>
-        <axis>
-          <xyz>0 0 -1</xyz>
-          <limit>
-            <effort>5</effort>
-            <velocity>300</velocity>
-            <lower>-1e+16</lower>
-            <upper>1e+16</upper>
-          </limit>
-          <dynamics>
-            <damping>0</damping>
-            <friction>0</friction>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_left_front_wheel'>
-        <pose relative_to='car_1_left_front_wheel_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 -0.0225 0 -0 0</pose>
-          <mass>0.34055</mass>
-          <inertia>
-            <ixx>0.00026046</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00026046</iyy>
-            <iyz>0</iyz>
-            <izz>0.00041226</izz>
-          </inertia>
-        </inertial>
-        <collision name='car_1_left_front_wheel_collision'>
-          <pose>0 0 -0.0225 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <length>0.045</length>
-              <radius>0.05</radius>
-            </cylinder>
-          </geometry>
-          <surface>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-              </ode>
-            </contact>
-            <friction>
-              <ode>
-                <mu>1.7</mu>
-                <mu2>1.7</mu2>
-                <fdir1>0 0 1</fdir1>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='car_1_left_front_wheel_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/left_wheel.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Black</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_right_rear_wheel_joint' type='revolute'>
-        <pose relative_to='car_1_base_link'>0 -0.1 0.05 1.5708 -0 0</pose>
-        <parent>car_1_base_link</parent>
-        <child>car_1_right_rear_wheel</child>
-        <axis>
-          <xyz>0 0 -1</xyz>
-          <limit>
-            <effort>5</effort>
-            <velocity>300</velocity>
-            <lower>-1e+16</lower>
-            <upper>1e+16</upper>
-          </limit>
-          <dynamics>
-            <damping>0</damping>
-            <friction>0</friction>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_right_rear_wheel'>
-        <pose relative_to='car_1_right_rear_wheel_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0.0225 0 -0 0</pose>
-          <mass>0.34055</mass>
-          <inertia>
-            <ixx>0.00026046</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00026046</iyy>
-            <iyz>0</iyz>
-            <izz>0.00041226</izz>
-          </inertia>
-        </inertial>
-        <collision name='car_1_right_rear_wheel_collision'>
-          <pose>0 0 0.0225 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <length>0.045</length>
-              <radius>0.05</radius>
-            </cylinder>
-          </geometry>
-          <surface>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-              </ode>
-            </contact>
-            <friction>
-              <ode>
-                <mu>1.7</mu>
-                <mu2>1.7</mu2>
-                <fdir1>1 0 0</fdir1>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='car_1_right_rear_wheel_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/right_wheel.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Black</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_right_steering_hinge_joint' type='revolute'>
-        <pose relative_to='car_1_base_link'>0.325 -0.1 0.05 3.14159 1.57079 3.14159</pose>
-        <parent>car_1_base_link</parent>
-        <child>car_1_right_steering_hinge</child>
-        <axis>
-          <xyz>-1 0 0</xyz>
-          <limit>
-            <lower>-1</lower>
-            <upper>1</upper>
-            <effort>2</effort>
-            <velocity>100</velocity>
-          </limit>
-          <dynamics>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_right_steering_hinge'>
-        <pose relative_to='car_1_right_steering_hinge_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>4e-06</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>4e-06</iyy>
-            <iyz>0</iyz>
-            <izz>4e-06</izz>
-          </inertia>
-        </inertial>
-        <visual name='car_1_right_steering_hinge_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/hinge.stl</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <joint name='car_1_right_front_wheel_joint' type='revolute'>
-        <pose relative_to='car_1_right_steering_hinge'>0 0 0 1.5708 -0 0</pose>
-        <parent>car_1_right_steering_hinge</parent>
-        <child>car_1_right_front_wheel</child>
-        <axis>
-          <xyz>0 0 -1</xyz>
-          <limit>
-            <effort>5</effort>
-            <velocity>300</velocity>
-            <lower>-1e+16</lower>
-            <upper>1e+16</upper>
-          </limit>
-          <dynamics>
-            <damping>0</damping>
-            <friction>0</friction>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-      </joint>
-      <link name='car_1_right_front_wheel'>
-        <pose relative_to='car_1_right_front_wheel_joint'>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0.0225 0 -0 0</pose>
-          <mass>0.34055</mass>
-          <inertia>
-            <ixx>0.00026046</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00026046</iyy>
-            <iyz>0</iyz>
-            <izz>0.00041226</izz>
-          </inertia>
-        </inertial>
-        <collision name='car_1_right_front_wheel_collision'>
-          <pose>0 0 0.0225 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <length>0.045</length>
-              <radius>0.05</radius>
-            </cylinder>
-          </geometry>
-          <surface>
-            <contact>
-              <ode>
-                <kp>1e+07</kp>
-                <kd>1</kd>
-              </ode>
-            </contact>
-            <friction>
-              <ode>
-                <mu>1.7</mu>
-                <mu2>1.7</mu2>
-                <fdir1>0 0 1</fdir1>
-              </ode>
-              <torsional>
-                <ode/>
-              </torsional>
-            </friction>
-            <bounce/>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='car_1_right_front_wheel_visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>/home/caluckal/catkin_ws/src/audubon_gazebo/urdf/meshes/right_wheel.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Black</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
-        <robotNamespace>/car_1</robotNamespace>
-        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-      </plugin>
-      <static>0</static>
-      <plugin name='p3d_base_controller' filename='libgazebo_ros_p3d.so'>
-        <alwaysOn>1</alwaysOn>
-        <updateRate>50.0</updateRate>
-        <bodyName>car_1_base_link</bodyName>
-        <topicName>/car_1/ground_truth</topicName>
-        <gaussianNoise>0.0</gaussianNoise>
-        <frameName>world</frameName>
-        <xyzOffsets>0 0 0</xyzOffsets>
-        <rpyOffsets>0 0 0</rpyOffsets>
-        <robotNamespace>/</robotNamespace>
-      </plugin>
-      <pose>0 0 0.05 0 -0 0</pose>
-    </model>
     <model name='fountain'>
       <static>1</static>
       <link name='link'>
@@ -13313,7 +12699,7 @@
     </model>
     <model name='stop_light_post_clone'>
       <static>1</static>
-      <link name='link'>
+      <link name='post_link3'>
         <collision name='post_3'>
           <geometry>
             <mesh>
@@ -13335,7 +12721,7 @@
             </friction>
           </surface>
         </collision>
-        <visual name='post'>
+        <visual name='post3'>
           <geometry>
             <mesh>
               <uri>model://stop_light_post/meshes/stop_light_post.obj</uri>
@@ -13531,8 +12917,8 @@
     </model>
     <model name='stop_light_post_clone_0'>
       <static>1</static>
-      <link name='link'>
-        <collision name='post'>
+      <link name='post_link'>
+        <collision name='post1'>
           <geometry>
             <mesh>
               <uri>model://stop_light_post/meshes/stop_light_post.obj</uri>
@@ -13553,7 +12939,7 @@
             </friction>
           </surface>
         </collision>
-        <visual name='post'>
+        <visual name='post1'>
           <geometry>
             <mesh>
               <uri>model://stop_light_post/meshes/stop_light_post.obj</uri>
@@ -16689,7 +16075,7 @@
             </friction>
           </surface>
         </collision>
-        <visual name='post'>
+        <visual name='post2'>
           <geometry>
             <mesh>
               <uri>model://stop_light_post/meshes/stop_light_post.obj</uri>
@@ -16907,7 +16293,7 @@
             </friction>
           </surface>
         </collision>
-        <visual name='post'>
+        <visual name='post2'>
           <geometry>
             <mesh>
               <uri>model://stop_light_post/meshes/stop_light_post.obj</uri>
