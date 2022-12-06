@@ -1,7 +1,6 @@
 <?xml version='1.0'?>
 
 <launch>
-
   <!-- agent properties -->
   <arg name='car_name' default='car_1' />
   <arg name='x_pos' default='0.0' />
@@ -10,7 +9,8 @@
   <arg name='run_gazebo' default='false' />
   <arg name='paint' default='Yellow' />
   <arg name='keyboard_control' default='false' />
-  <arg name='world_name' default='bahrain_track' />
+  <arg name='world_name' default='testing_ground' />
+  <arg name='publish_map' default='false' />
 
 <!-- Set the default value to false if joy input is not needed -->
   <arg name='remote_control' default='true' />
@@ -40,9 +40,10 @@
   </group>
 
   <!-- Code to launch map file  -->
-  <arg name="map_file" default="$(find audubon-gazebo)/world/models/$(arg world_name)/$(arg world_name).yaml"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-
+  <group if='$(arg publish_map)'>
+    <arg name="map_file" default="$(find audubon-gazebo)/maps/$(arg world_name).yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  </group>
   <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower. Settings at follow_car.rviz -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/>
 
