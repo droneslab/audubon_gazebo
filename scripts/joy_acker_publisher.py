@@ -42,10 +42,13 @@ def callback(data):
     throttle_input = data.axes[5]
     reverse_input = data.buttons[2]
     multiplier = data.axes[7]
+    increase_speed = data.buttons[5]
+    decrease_speed = data.buttons[4]
     default_speed = data.buttons[1]
     steering_input = data.axes[0]
 
     max_speed+=(1*multiplier)
+    # max_speed+=(1*(increase_speed-decrease_speed))
 
     if(default_speed):
         max_speed=original_speed
