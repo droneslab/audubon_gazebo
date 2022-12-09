@@ -1,7 +1,6 @@
 <?xml version='1.0'?>
 
 <launch>
-
   <!-- agent properties -->
   <arg name='car_name' default='car_1' />
   <arg name='x_pos' default='0.0' />
@@ -9,9 +8,12 @@
   <arg name='z_pos' default='0.05' />
   <arg name='run_gazebo' default='false' />
   <arg name='paint' default='Yellow' />
-  <arg name='remote_control' default='false' />
   <arg name='keyboard_control' default='false' />
-  <arg name='world_name' default='bahrain_track' />
+  <arg name='world_name' default='testing_ground' />
+  <arg name='publish_map' default='false' />
+
+<!-- Set the default value to false if joy input is not needed -->
+  <arg name='remote_control' default='true' />
 
   <!-- run gazebo by default only once -->
   <group if='$(arg run_gazebo)'>
@@ -37,12 +39,25 @@
     </include>
   </group>
 
+  <!-- Code to launch map file  -->
+  <group if='$(arg publish_map)'>
+    <arg name="map_file" default="$(find audubon-gazebo)/maps/$(arg world_name).yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  </group>
+  <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower. Settings at follow_car.rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/>
+
+  <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower with a map server. Settings at follow_map.rviz
+  Ensure map_server node is running -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/> -->
+  
   <!-- check if remote control is required -->
   <group if='$(arg remote_control)'>
     <node name='joy_plugin' pkg='joy' type='joy_node'>
-      <param name='autorepeat_rate' value='20.0' />
+      <!-- <param name='autorepeat_rate' value='20.0' /> -->
     </node>
-    <node name='remote_control' pkg='audubon-gazebo' type='remote_control.py' args='$(arg car_name)' />
+    <!-- args are max_speed and max_angle. Max angle is actually halved in code so put 2x the desired max steering angle -->
+    <node name='remote_control' pkg='audubon-gazebo' type='joy_acker_publisher.py' args='5 40' />
   </group>
 
   <!-- check if keyboard control is required -->
