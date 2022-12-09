@@ -56,12 +56,25 @@
 
   <group ns='$(arg car_name)'>
     <!-- static base_laser_link -->
-    <node name='base_laser_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+    <node name='base_chassis_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.05
                                  0.0 0.0 0.0
                                  $(arg car_name)_base_link
-                                 $(arg car_name)_laser
+                                 $(arg car_name)_chassis
                                  20' />
 
+    <node name='chassis_laser' pkg='tf' type='static_transform_publisher' args='0.390 0 0.070
+                                 0.0 0.0 0.0
+                                 $(arg car_name)_chassis
+                                 $(arg car_name)_laser
+                                 20' />                            
+
+    <node name='chassis_camera' pkg='tf' type='static_transform_publisher' args='0.415 0 0.1
+                                 0.0 0.0 0.0
+                                 $(arg car_name)_chassis
+                                 $(arg car_name)_camera
+                                 20' /> 
+
+                                 
     <!-- launch base controller -->
     <node name='control_plugin' pkg='audubon-gazebo' type='control_plugin.py' args='$(arg car_name) $(arg x_pos) $(arg y_pos)' output='screen' />
     
