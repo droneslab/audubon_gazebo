@@ -66,7 +66,6 @@
     </geometry>
   </xacro:macro>
 
-
   <xacro:macro name="left_rear_wheel_geometry">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <geometry>
@@ -350,7 +349,9 @@
   </link>
 
   <joint name="$(arg robot_name)_hokuyo_joint" type="fixed">
-    <origin xyz="0.125 0.0 0.155" rpy="0 0 0"/>
+    <origin xyz="0.390 0 0.070" rpy="0 0 0"/>
+    <!-- The commented config is to place the hokuyo on top -->
+    <!-- <origin xyz="0.125 0.0 0.155" rpy="0 0 0"/> -->
     <parent link="$(arg robot_name)_chassis" />
     <child link="$(arg robot_name)_laser" />
     <axis xyz="0 0 1" />
@@ -358,7 +359,7 @@
 
 
   <!-- camera class (spawn parameters) -->
-  <link name="$(arg robot_name)_link">
+  <!-- <link name="$(arg robot_name)_link">
     <inertial>
       <mass value="1e-5" />
       <origin xyz="0 0 0.25" rpy="0 0 0"/>
@@ -377,19 +378,18 @@
       </geometry>
       <material name="red"/>
     </visual>
-  </link>
+  </link> -->
 
-  <joint name="$(arg robot_name)_joint" type="fixed">
+  <!-- <joint name="$(arg robot_name)_joint" type="fixed">
     <origin xyz="0.390 0 0.025" rpy="0 0 0"/>
     <parent link="$(arg robot_name)_chassis"/>
     <child link="$(arg robot_name)_link"/>
     <axis xyz="0 0 1" />
-    <!-- <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0" /> -->
-  </joint>
+  </joint> -->
 
 
   <!-- camera lenses -->
-  <link name="$(arg robot_name)_camera_link">
+  <!-- <link name="$(arg robot_name)_camera_link">
     <inertial>
       <mass value="1e-5" />
       <origin xyz="-2.5 0 1.75" rpy="0 .57 0"/>
@@ -415,7 +415,7 @@
     <parent link="$(arg robot_name)_link"/>
     <child link="$(arg robot_name)_right_link"/>
     <axis xyz="0 0 1" />
-  </joint>
+  </joint> -->
 
   <!-- Gazebo references -->
 
@@ -518,6 +518,20 @@
           <frameName>$(arg robot_name)_laser</frameName>
         </plugin>
       </sensor>
+    </gazebo>
+    <gazebo>
+      <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+        <!-- <robotNamespace>$(arg robot_namespace)</robotNamespace> -->
+        <updateRate>50.0</updateRate>
+        <bodyName>$(arg robot_name)_laser</bodyName>
+        <topicName>$(arg robot_name)_laser_imu</topicName>
+        <accelDrift>0.005 0.005 0.005</accelDrift>
+        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+        <rateDrift>0.005 0.005 0.005 </rateDrift>
+        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+        <headingDrift>0.005</headingDrift>
+        <headingGaussianNoise>0.005</headingGaussianNoise>
+      </plugin>
     </gazebo>
   </xacro:unless>
 
