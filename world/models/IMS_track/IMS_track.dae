@@ -78,14 +78,14 @@
   <library_effects>
     <effect id="Material_001-effect">
       <profile_COMMON>
-        <newparam sid="ub_png-surface">
+        <newparam sid="IMS_texture_png-surface">
           <surface type="2D">
-            <init_from>ub_png</init_from>
+            <init_from>IMS_texture_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="ub_png-sampler">
+        <newparam sid="IMS_texture_png-sampler">
           <sampler2D>
-            <source>ub_png-surface</source>
+            <source>IMS_texture_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -94,7 +94,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="ub_png-sampler" texcoord="UVMap"/>
+              <texture texture="IMS_texture_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.45</float>
@@ -105,8 +105,8 @@
     </effect>
   </library_effects>
   <library_images>
-    <image id="ub_png" name="ub_png">
-      <init_from>ub.png</init_from>
+    <image id="IMS_texture_png" name="IMS_texture_png">
+      <init_from>IMS_texture.png</init_from>
     </image>
   </library_images>
   <library_materials>
