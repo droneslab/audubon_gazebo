@@ -3,7 +3,7 @@
 <launch>
 
   <!-- global variables -->
-  <arg name='world_name' default='silverstone_track' />
+  <arg name='world_name' default='IMS_bare' />
 
   <!-- global map server -->
   <!--
