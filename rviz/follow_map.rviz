@@ -151,6 +151,22 @@ Visualization Manager:
       Topic: /car_1/base/odom
       Unreliable: false
       Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /PurePursuitMap
+      Name: PurePursuitMap
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /PurePursuitPoints
+      Name: PurePursuitPoints
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
