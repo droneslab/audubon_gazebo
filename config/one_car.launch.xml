@@ -44,8 +44,12 @@
     <arg name="map_file" default="$(find audubon-gazebo)/maps/$(arg world_name).yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
   </group>
+
   <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower. Settings at follow_car.rviz -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/>
+
+  <!-- launch the reset service  -->
+  <node pkg="audubon-gazebo" name="reset_car_node" type="reset.py" output="screen"/>
 
   <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower with a map server. Settings at follow_map.rviz
   Ensure map_server node is running -->

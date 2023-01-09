@@ -1,51 +1,60 @@
-# import rospy
-# from std_srvs.srv import Empty
+#! /usr/bin/env python3
 
-# rospy.wait_for_service('/gazebo/reset_world')
-# reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
-# reset_world()
-
-# Ctrl-C the code since pub/subs are weird when invoked once
+import rospy
 from gazebo_msgs.msg import ModelState 
 from gazebo_msgs.srv import SetModelState
-import rospy
-from std_msgs.msg import String
+from std_srvs.srv import SetBool, SetBoolResponse
 from ackermann_msgs.msg import AckermannDrive
 
-
-# Get the gazebo reset service
-rospy.wait_for_service('/gazebo/set_model_state')
-
-# Init node for the path publishing subscriber
-rospy.init_node('clearing_node')
-try:
-    
+def handle_reset(req):
     set_state = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
-    # Give "clear" string to the path publishing subscriber which clears the pose list
-    clear_string_pub = rospy.Publisher('/clear_path_msg',String,queue_size=1)
-    # Send ackermann message to stop stray/latched messages
-    vel_pub = rospy.Publisher('/car_1/command',AckermannDrive,queue_size=1)
+    clear_path = rospy.ServiceProxy('/car_1/clear_path', SetBool)
+    drive_msg =AckermannDrive()
 
-    while not rospy.is_shutdown():
-        state_msg = ModelState()
-        state_msg.model_name = 'car_1'
-        state_msg.pose.position.x =  0
-        state_msg.pose.position.y = 0
-        state_msg.pose.position.z =  0
+    clear_input_pub = rospy.Publisher('/car_1/command', AckermannDrive, queue_size=1)
+    clear_input_pub.publish(drive_msg)
 
-        # Currently set for IMS to rotate car yaw by pi radians for HMPC testing
-        # Make w 1 and z 0 for normal rotation
-        state_msg.pose.orientation.w = 0
-        state_msg.pose.orientation.x = 0
-        state_msg.pose.orientation.y = 0
-        state_msg.pose.orientation.z = 1
+    if req.data is True:
+        try:
+            state_msg = ModelState()
+            state_msg.model_name = 'car_1'
+            state_msg.pose.position.x =  0
+            state_msg.pose.position.y = 0
+            state_msg.pose.position.z =  0
+            state_msg.pose.orientation.x = 0
+            state_msg.pose.orientation.y = 0
+            state_msg.pose.orientation.z = 0
+            state_msg.pose.orientation.w = 1
 
-        set_state(state_msg)
-        ack_msg = AckermannDrive()
-        vel_pub.publish(ack_msg)
-        clear_string_pub.publish("clear")
+            state_msg.twist.linear.x = 0
+            state_msg.twist.linear.y = 0
+            state_msg.twist.linear.z = 0
+
+            state_msg.twist.angular.x = 0
+            state_msg.twist.angular.y = 0
+            state_msg.twist.angular.z = 0
+            gazebo_resp = set_state(state_msg) 
+        except rospy.ServiceException as e:
+            return SetBoolResponse(False, str(e))
+
+        rospy.sleep(1)
+        try:
+            clear_path_resp = clear_path(True)
+        except rospy.ServiceException as e:
+            return SetBoolResponse(False, str(e))
+        
+        return SetBoolResponse(True, "Reset Successful")
+
+    else:
+        return SetBoolResponse(False, "Did not do anything because got false")
 
 
-except rospy.ServiceException :
-    print("Service call failed")
+rospy.init_node('reset_car_node')
+
+# Wait for reset services to spawn
+rospy.wait_for_service('/gazebo/set_model_state')
+rospy.wait_for_service('/car_1/clear_path')
+
+reset_service = rospy.Service('/reset_car', SetBool, handle_reset)
+rospy.spin()
 
