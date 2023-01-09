@@ -3,10 +3,12 @@
 import rospy 
 from nav_msgs.msg import Odometry, Path
 from geometry_msgs.msg import PoseStamped
+from std_msgs.msg import String
 class Path_Publisher():
     def __init__(self):
         self.filter_path_publisher_ = rospy.Publisher('/path/filtered', Path, queue_size = 1)
-        
+        # Added a new subscriber that subscribes to the gazebo/rviz resetting node
+        self.clear_path = rospy.Subscriber('/clear_path_msg', String, self.clearpath)
         self.filter_subscription_ = rospy.Subscriber(
             '/car_1/base/odom',
             Odometry,
@@ -32,6 +34,11 @@ class Path_Publisher():
         self.filter_path.poses.append(newpose)
         # rospy.loginfo("publishing filter path")
         self.filter_path_publisher_.publish(self.filter_path)
+
+    # Function that clears the published pose messages when "clear" is received
+    def clearpath(self,data):
+        if data.data == "clear":
+            self.filter_path.poses.clear()
     
 
 def main():
