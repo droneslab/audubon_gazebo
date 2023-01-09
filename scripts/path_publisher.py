@@ -4,11 +4,13 @@ import rospy
 from nav_msgs.msg import Odometry, Path
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import String
+from std_srvs.srv import SetBool, SetBoolResponse
+
 class Path_Publisher():
     def __init__(self):
         self.filter_path_publisher_ = rospy.Publisher('/path/filtered', Path, queue_size = 1)
         # Added a new subscriber that subscribes to the gazebo/rviz resetting node
-        self.clear_path = rospy.Subscriber('/clear_path_msg', String, self.clearpath)
+        self.clear_service = rospy.Service('clear_path', SetBool, self.clearpath)
         self.filter_subscription_ = rospy.Subscriber(
             '/car_1/base/odom',
             Odometry,
@@ -36,9 +38,15 @@ class Path_Publisher():
         self.filter_path_publisher_.publish(self.filter_path)
 
     # Function that clears the published pose messages when "clear" is received
-    def clearpath(self,data):
-        if data.data == "clear":
-            self.filter_path.poses.clear()
+    def clearpath(self, req):
+        if req.data == 1:
+            try:
+                self.filter_path.poses.clear()
+                return SetBoolResponse(True, "Success")
+            except Exception as e:
+                return SetBoolResponse(False, "Could not clear path")
+        
+        
     
 
 def main():
