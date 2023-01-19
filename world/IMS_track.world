@@ -130,7 +130,6 @@
     </audio>
     <wind/>
     <state world_name='default'>
-      <iterations>192696</iterations>
       <model name='Construction Barrel'>
         <pose>65.56 3.09949 0.300001 1e-06 -0 -0.168922</pose>
         <scale>1 1 1</scale>
