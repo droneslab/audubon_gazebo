@@ -40,12 +40,16 @@
   </group>
 
   <!-- Code to launch map file  -->
+  <!-- 
   <group if='$(arg publish_map)'>
     <arg name="map_file" default="$(find audubon-gazebo)/maps/$(arg world_name).yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
   </group>
+  -->
+
+  
   <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower. Settings at follow_car.rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/>
+  <!--<node pkg="rviz" type="rviz" name="rviz" args="-d $(find audubon-gazebo)/rviz/follow_map.rviz"/>-->
 
   <!-- Uncomment this to launch rviz with a laser scan plotter and a car follower with a map server. Settings at follow_map.rviz
   Ensure map_server node is running -->
@@ -53,8 +57,12 @@
   
   <!-- check if remote control is required -->
   <group if='$(arg remote_control)'>
+
+    
     <node name='joy_plugin' pkg='joy' type='joy_node'>
+    <param name="dev" type="str" value="/dev/input/js1" />
       <!-- <param name='autorepeat_rate' value='20.0' /> -->
+      <!-- <rosparam name = 'dev' value= '/dev/input/js1' /> -->
     </node>
     <!-- args are max_speed and max_angle. Max angle is actually halved in code so put 2x the desired max steering angle -->
     <node name='remote_control' pkg='audubon-gazebo' type='joy_acker_publisher.py' args='5 40' />

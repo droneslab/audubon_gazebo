@@ -13,7 +13,7 @@
       </attenuation>
       <direction>-0.5 0.5 -1</direction>
     </light>
-        <model name='ground_plane'>
+    <model name='ground_plane'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -62,9 +62,11 @@
         <enable_wind>0</enable_wind>
       </link>
     </model>
+
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
+
     <physics name='default_physics' default='0' type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -82,6 +84,8 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
+
+
     <model name='silverstone_track'>
       <pose frame=''>-60 5 -0.3 0 0 -0.95</pose>
       <static>1</static>
@@ -120,6 +124,8 @@
         <kinematic>0</kinematic>
       </link>
     </model>
+
+    
     <audio>
       <device>default</device>
     </audio>

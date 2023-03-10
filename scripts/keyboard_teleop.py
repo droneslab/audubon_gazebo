@@ -47,7 +47,7 @@ if __name__== '__main__':
           angle = 0.0
           if (key == '\x03'):
              break
-       command                = AckermannDrive();
+       command                = AckermannDrive()
        command.speed          = speed * speed_limit
        command.steering_angle = angle * angle_limit
        command_pub.publish(command)
@@ -56,7 +56,7 @@ if __name__== '__main__':
     print('raise exception: key binding error')
 
   finally:
-    command = AckermannDrive();
+    command = AckermannDrive()
     command.speed = speed * speed_limit
     command.steering_angle = angle * angle_limit
     command_pub.publish(command)

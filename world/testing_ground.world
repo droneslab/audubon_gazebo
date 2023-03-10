@@ -82,7 +82,9 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <!-- <model name='asphalt_plane'>
+
+
+    <model name='asphalt_plane'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -130,7 +132,7 @@
         <enable_wind>0</enable_wind>
       </link>
       <pose frame=''>-0.719505 0.551979 0 0 -0 0</pose>
-    </model> -->
+    </model> 
     <audio>
       <device>default</device>
     </audio>

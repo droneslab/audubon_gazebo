@@ -4,13 +4,15 @@ import rospy
 from nav_msgs.msg import Odometry, Path
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import String
+
+
 class Path_Publisher():
     def __init__(self):
         self.filter_path_publisher_ = rospy.Publisher('/path/filtered', Path, queue_size = 1)
         # Added a new subscriber that subscribes to the gazebo/rviz resetting node
         self.clear_path = rospy.Subscriber('/clear_path_msg', String, self.clearpath)
         self.filter_subscription_ = rospy.Subscriber(
-            '/car_1/base/odom',
+            'jet2/vicon_odom',
             Odometry,
             self.filter_listener_callback)
         self.filter_subscription_  #prevent unused variable warning

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="geotiff_map_file_path" default="$(find audubon-gazebo)/maps"/>
+  <param name="/use_sim_time" value="true"/>
+
+  <arg name="scan_topic" default="scan"/>
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+    
+    <!-- Frame names car_1_base_link odom -->
+    <!-- map_frame -> map odom frame :map-->
+    <param name="map_frame" value="map" /> 
+    <param name="base_frame" value="laser" />
+    <param name="odom_frame" value="odom" />
+    
+    <!-- Tf use -->
+    <param name="use_tf_scan_transformation" value="false"/> <!-- keeping base and laser frame same -->
+    <param name="use_tf_pose_start_estimate" value="false"/> <!-- Use first laser scan for pose estimate -->
+    <param name="pub_map_odom_transform" value="false"/> <!-- No odometry so map and odom frame is same -->
+    
+    <!-- Map size / start point -->
+    <param name="map_resolution" value="0.050"/>
+    <param name="map_size" value="2048"/>
+    <param name="map_start_x" value="0.5"/>
+    <param name="map_start_y" value="0.5" />
+    <param name="map_multi_res_levels" value="2" />
+    
+    <!-- Map update parameters -->
+    <param name="update_factor_free" value="0.4"/>
+    <param name="update_factor_occupied" value="0.9" />    
+    <param name="map_update_distance_thresh" value="0.4"/>
+    <param name="map_update_angle_thresh" value="0.06" />
+    <param name="laser_z_min_value" value = "-1.0" />
+    <param name="laser_z_max_value" value = "1.0" />
+    
+    <!-- Advertising config --> 
+    <param name="advertise_map_service" value="true"/>
+    
+    <param name="scan_subscriber_queue_size" value="5"/>
+    <param name="scan_topic" value="$(arg scan_topic)"/>
+    
+    <param name="tf_map_scanmatch_transform_frame_name" value="scanmatcher_frame" />
+  </node>
+    
+
+  <node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find hector_slam_launch)/rviz_cfg/mapping_demo.rviz"/>
+
+
+
+  <node name='base_to_laser_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+                                 0.0 0.0 0.0
+                                 base_link
+                                 laser
+                                 100' />
+
+  <node name='map_to_odom_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+                                 0.0 0.0 0.0
+                                 map
+                                 odom
+                                 100' />
+  
+  <node name='map_to_world_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+                                 0.0 0.0 0.0
+                                 world
+                                 map
+                                 100' />
+
+  
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+  </include>
+
+</launch>

@@ -3,7 +3,7 @@
 <launch>
 
   <!-- global variables -->
-  <arg name='world_name' default='IMS_track' />
+  <arg name='world_name' default='building' />
 
   <!-- global map server -->
   <!--
@@ -21,7 +21,13 @@
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
     <arg name='publish_map' value='true' />
+    <arg name='keyboard_control' value='true' />
+    <arg name='remote_control' value='false' />
   </include>
+
+  <!-- <include file='$(find particle_filter)/launch/localize.launch'> </include> 
+
+  <include file='$(find amcl)/examples/amcl_diff.launch'> </include> -->
 
   <!-- spawn car_2 -->
   <!--

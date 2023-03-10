@@ -21,6 +21,8 @@
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
     <arg name='publish_map' value='true' />
+    <arg name='keyboard_control' value='true' />
+    <arg name='remote_control' value='true' />
   </include>
 
   <!-- spawn car_2 -->

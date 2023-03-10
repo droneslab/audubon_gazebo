@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="use_sim_time" value="true"/>
+
+  <node pkg="rosbag" type="play" name="rosbag_player" args="$(find audubon-gazebo)/bags/test_fig8.bag --clock -r 1" />
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find xiaomi_lds_myhome)/demo/amcl.rviz"/>
+
+ <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 100" />
+  
+  <node pkg="tf" type="static_transform_publisher" name="world_to_map" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /map 100" />
+  
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /odom /laser 100" />
+  
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+        <rosparam command="load" file="$(find xiaomi_lds_myhome)/demo/shadow_filter.yaml" />
+  </node>
+
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
+    <remap from="scan" to="scan_filtered"/>
+    <param name="fixed_frame" value = "world"/>
+    <param name="max_iterations" value="100"/>
+  </node>
+
+
+  <arg name="map_file" default="$(find audubon-gazebo)/maps/test_fig8.yaml"/> 
+
+ <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+     <param name="frame_id" value="world"/> 
+  </node>
+
+  
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <remap from="scan" to="scan_filtered"/>
+    <!-- Publish scans from best pose at a max of 10 Hz -->
+    <param name="odom_model_type" value="omni-corrected"/>
+    <param name="odom_alpha1" value="0.2"/>
+    <param name="odom_alpha2" value="0.2"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.2"/>
+    <param name="odom_alpha5" value="0.2"/>
+
+    <param name="min_particles" value="100"/>
+    <param name="max_particles" value="5000"/>
+    <param name="kld_err" value="0.05"/>
+    <param name="kld_z" value="0.99"/>
+
+    <param name="laser_z_hit" value="0.5"/>
+    <param name="laser_z_short" value="0.05"/>
+    <param name="laser_z_max" value="0.05"/>
+    <param name="laser_z_rand" value="0.5"/>
+    <param name="laser_sigma_hit" value="0.2"/>
+    <param name="laser_lambda_short" value="0.1"/>
+    <param name="laser_model_type" value="likelihood_field"/>
+    <param name="laser_likelihood_max_dist" value="0.2"/>
+    <param name="update_min_d" value="0.1"/>
+    <param name="update_min_a" value="0.1"/>
+    <param name="resample_interval" value="1"/>
+    <param name="selective_resampling" value="true"/>
+    
+    <param name="odom_frame_id" value="odom"/>
+    <param name="transform_tolerance" value="1.0"/>
+    <param name="gui_publish_rate" value="10.0"/>
+    <param name="laser_max_beams" value="360"/>
+  </node>
+
+</launch>

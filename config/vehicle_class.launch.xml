@@ -81,7 +81,7 @@
     <!-- Launch the visualization scripts -->
     <node name='vel_republisher' pkg='audubon-gazebo' type='vel_republisher.py' output='screen' />
     <node name='path_publisher' pkg='audubon-gazebo' type='path_publisher.py' output='screen' />
-
+    <node name='path_publisher_amcl' pkg='audubon-gazebo' type='path_publisher_amcl.py' output='screen' />
   </group>
 
 </launch>

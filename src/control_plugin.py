@@ -74,6 +74,7 @@ global seq
 seq = 0
 footprint = PolygonStamped()
 
+#what is this?
 side_A = Point32()
 side_B = Point32()
 side_C = Point32()
@@ -137,6 +138,9 @@ max_speed        = 80.0 # 100.0
 # previous_speed   = 0.0
 
 # command callback
+
+
+#why 
 
 def command_callback(data):
 

@@ -4,7 +4,7 @@
 
   <!-- global variables -->
   <arg name='world_name' default='testing_ground' />
-  <arg name='kbd_control' default='false' />
+  <arg name='kbd_control' default='true' />
 
   <!-- global map server -->
   <!--
@@ -21,8 +21,9 @@
     <arg name='paint' value='Yellow' />
     <arg name='run_gazebo' value='true' />
     <arg name='world_name' value='$(arg world_name)' />
-    <arg name='keyboard_control' value='$(arg kbd_control)'/>
-    <arg name='publish_map' value='false' />
+    <arg name='publish_map' value='true' />
+    <arg name='keyboard_control' value='true' />
+    <arg name='remote_control' value='false' />
   </include>
 
   <!-- spawn car_2 -->
