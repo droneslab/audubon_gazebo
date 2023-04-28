@@ -10,12 +10,12 @@ import geometry_msgs.msg
 
 class Path_Publisher():
     def __init__(self):
-        self.filter_path_publisher_ = rospy.Publisher('/path/amcl_filtered', Path, queue_size = 1)
+        self.filter_path_publisher_ = rospy.Publisher('/path/hector_filtered', Path, queue_size = 1)
         # Added a new subscriber that subscribes to the gazebo/rviz resetting node
         self.clear_path = rospy.Subscriber('/clear_path_msg', String, self.clearpath)
         self.filter_subscription_ = rospy.Subscriber(
-            '/amcl_pose', #'/pf/pose/odom', #'/amcl_pose',
-            PoseWithCovarianceStamped,
+            '/slam_out_pose', #'/pf/pose/odom', #'/amcl_pose',
+            PoseStamped,
             self.filter_listener_callback)
         self.filter_subscription_  #prevent unused variable warning
         self.filter_path = Path()
@@ -30,11 +30,11 @@ class Path_Publisher():
             return
         self.filter_last_called = now 
         # rospy.loginfo("received filtered odometry")
-        newpose = PoseWithCovarianceStamped()
+        newpose = PoseStamped()
         self.filter_path.header = msgin.header
         newpose.header = msgin.header
         #newpose.header.frame_id = "base_link"
-        newpose.pose = msgin.pose.pose
+        newpose.pose = msgin.pose
         self.filter_path.poses.append(newpose)
         # rospy.loginfo("publishing filter path")
         self.filter_path_publisher_.publish(self.filter_path)

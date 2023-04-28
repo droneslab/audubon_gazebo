@@ -8,7 +8,7 @@ from std_msgs.msg import String
 
 class Path_Publisher():
     def __init__(self):
-        self.filter_path_publisher_ = rospy.Publisher('/path/filtered', Path, queue_size = 1)
+        self.filter_path_publisher_ = rospy.Publisher('/path/vicon', Path, queue_size = 1)
         # Added a new subscriber that subscribes to the gazebo/rviz resetting node
         self.clear_path = rospy.Subscriber('/clear_path_msg', String, self.clearpath)
         self.filter_subscription_ = rospy.Subscriber(

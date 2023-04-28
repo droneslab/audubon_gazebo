@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="geotiff_map_file_path" default="$(find audubon-gazebo)/maps"/>
+  <param name="/use_sim_time" value="false"/> 
+
+  <arg name="scan_topic" default="scan"/> <!-- Scan topic on which laser data is received  -->
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+    
+    <param name="map_frame" value="map" />  
+    <param name="base_frame" value="laser" />
+    <param name="odom_frame" value="odom" />
+    
+    <param name="pub_map_odom_transform" value="false"/> 
+    
+    <param name="map_resolution" value="0.050"/>
+    <param name="map_size" value="2048"/>
+    <param name="map_start_x" value="0.5"/> <!-- Origin of map frame in grid world [0,1]-->
+    <param name="map_start_y" value="0.5" />
+    <param name="map_multi_res_levels" value="2" /> <!-- No of resolution of map to store, Keep high if want to localise -->
+    <param name="map_update_distance_thresh" value="0.4"/> <!-- Chane in meters for map update-->
+    <param name="map_update_angle_thresh" value="0.06" /> <!-- Chane in radians for map update-->
+    
+    <param name="scan_topic" value="$(arg scan_topic)"/>
+    
+  </node>
+    
+  <node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find hector_slam_launch)/rviz_cfg/mapping_demo.rviz"/>
+
+  <!-- Required transform from laser to base_link -->>
+  <node name='base_to_laser_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+                                 0.0 0.0 0.0
+                                 base_link
+                                 laser
+                                 100' />
+                        
+  <!-- Ground truth is in world frame -->>
+  <node name='map_to_world_link' pkg='tf' type='static_transform_publisher' args='0.0 0.0 0.0
+                                 0.0 0.0 0.0
+                                 world
+                                 map
+                                 100' />
+
+  <!-- Save occupany grid map -->
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+  </include>
+
+<node name='path_publisher_hector' pkg='audubon-gazebo' type='path_publisher_hector.py' output='screen' />
+
+</launch>
