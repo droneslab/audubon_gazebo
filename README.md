@@ -49,3 +49,20 @@ Based on the work of:
   organization={IEEE}
 }
 ```
+
+
+
+If you use this, please cite our paper :
+```
+@INPROCEEDINGS{10341603,
+  author={Dighe, Yashom and Kim, Youngjin and Rajguru, Smit and Turkar, Yash and Singh, Tarunraj and Dantu, Karthik},
+  booktitle={2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={Kinematics-Only Differential Flatness Based Trajectory Tracking for Autonomous Racing}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1629-1636},
+  keywords={Trajectory tracking;Hardware;Intelligent robots;Predictive control},
+  doi={10.1109/IROS55552.2023.10341603}}
+
+```
